@@ -118,9 +118,9 @@ function populateImage(v, k) {
   if (data.loadedItems < 4) { console.log(k + ',' + JSON.stringify(v)); }
   
   if (data.loadedItems > 30) { return; } // v.Catalogue
-  var html = IMG_FRAGMENT({ xref : v.Image, url: v.Image, title : v.Title, desc: v.Description });
-  var img = $(html);
-  $('#carousel').append(img);
+  //var html = IMG_FRAGMENT({ xref : v.Image, url: v.Image, title : v.Title, desc: v.Description });
+  //var img = $(html);
+  //$('#carousel').append(img);
   data.loadedItems ++;
 
 /*
@@ -164,7 +164,10 @@ function onStateClick(e) {
   }
   layer.setStyle(style);
   $('#button-home').show();
-  $('.slideshow').show();
+  //$('.slideshow').show();
+  setTimeout(function() {
+    window.location = "http://wynautsa.weebly.com";
+  }, 2000);
 }
 
 // Next one is CC0 license
@@ -191,23 +194,4 @@ $(document).ready(function() {
   $('.slideshow').hide();
   $('#button-info').show();
   
-  Galleria.loadTheme('galleria/themes/classic/galleria.classic.min.js');
-  var ready = false;
-  Galleria.configure({
-      wait: true,
-      showInfo: true,
-      imageTimeout: 50,
-      dummy: '/assets/dummy.jpg'
-  });
-  Galleria.run('#carousel');
-  Galleria.ready(function(options) {
-    this.bind('image', function(e) {
-      if (!ready) {
-        var img = $('#carousel').data('galleria').getActiveImage();
-        console.log(img.src);
-      }
-      ready = true;
-      console.log('Now viewing ' + e.imageTarget.src);
-    });
-  });
 });
